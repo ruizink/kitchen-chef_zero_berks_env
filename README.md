@@ -1,2 +1,3 @@
-# kitchen-chef_zero_berkshelf_from_env
-test-kitchen chef-zero + berkshelf provider having support for enviroment cookbook restrictions
+# kitchen-chef_zero_berks_env
+
+Chef Zero provider for Test Kitchen that enables Berkshelf to vendor the cookbook versions specified by a given chef environment.
