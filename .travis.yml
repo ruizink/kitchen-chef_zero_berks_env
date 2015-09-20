@@ -1,13 +1,5 @@
 language: ruby
 rvm:
-- 2.1.2
-- 2.0.0
-- 1.9.3
-deploy:
-  provider: rubygems
-  api_key:
-    secure: E1RIsTEaqHLqOxgcYac+0hAo6gWeJgWkbRnlqMkoL1uL7r+69JRwJ13NPa/BEzn87ukJ4/arRRC6TI9NFtof3TbN7uceVjab2kVQmqjNxva5OZBGE4V+a/4i6PN1nzmDESijQtdMxvSE4tt4xcCzSKjR1abKETwItCp2sehCzDoVG7SmUt0NsiLv57NCmq3APJYvn9bcnA3R1zfTYoRkCePdoeZBs3m+TVs7fS1fg7q8UbjCjIVJjPWGeYqca9TVdRRDxoWHOhEyf+/9rJAJg36/qM6iJlchbFdnTTMuJQiFWzXVrFfjdqm9U86JS0K00Gkm/2f+P+534tH3519z4PpDh611RGkWewXWBZYzwAu4qeMfgvTo7MQ0tBrEtjcH54EiDRn4II3bhHps31mUx5BtkOnawjbdLfRZBkpuUNm8rCuRDw+N57h1HB97oJXYW9YCMyTIAAL+92KxutHystze2i/0CpT9kigAbTaUBsoEQam3Wt81ncQHkqrpwXRzxDvEbkgqMd+79NFLHVnu0C/e3TvThnpyBZwOXSByH909DXfLnPwO67GSDYwh3IWE+LHI90jIRZpQ9/5yFDSpklpZ+bUXlPQ19JwGXCuty52RRdHz+nKdUh+4TgccV9KHEgDKa4UAICjUIPzgJbpbfuv5LBOZHRVDJxCh5Unzzws=
-  gem: kitchen-chef_zero_berks_env
-  on:
-    tags: true
-    repo: ruizink/kitchen-chef_zero_berks_env
+  - "2.1.2"
+  - "2.0.0"
+  - "1.9.3"
