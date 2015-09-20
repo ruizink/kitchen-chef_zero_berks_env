@@ -30,7 +30,7 @@ module Kitchen
             berks.install
             info("Locking the versions fetched from the chef environment '#{chef_environment}'...")
             unless environment_json['cookbook_versions'].nil?
-              berks.lockfile.graph.each do | graphitem |
+              berks.lockfile.graph.each do |graphitem|
                 version = environment_json['cookbook_versions'][graphitem.name]
                 unless version.nil? || berks.has_dependency?(graphitem.name)
                   info("Adding Berkshelf dependency: #{graphitem.name} (#{version})")
