@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 require 'kitchen/provisioner/chef_zero'
+require 'git'
 
 module Kitchen
   module Provisioner
@@ -20,30 +21,11 @@ module Kitchen
 
         # skip if the environment was not specified
         unless chef_environment.nil?
-          info("Loading chef environment '#{chef_environment}'...")
-          debug("Using environment from '#{config[:environments_path]}/#{chef_environment}.json'")
-
-          environment_json = JSON.parse(File.read("#{config[:environments_path]}/#{chef_environment}.json"))
-
-          ::Berkshelf.ui.mute do
-            info("Resolving dependency graph with Berkshelf #{::Berkshelf::VERSION}...")
-            berks.install
-            info("Locking the versions fetched from the chef environment '#{chef_environment}'...")
-            unless environment_json['cookbook_versions'].nil?
-              berks.lockfile.graph.each do |graphitem|
-                version = environment_json['cookbook_versions'][graphitem.name]
-                unless version.nil? || berks.has_dependency?(graphitem.name)
-                  info("Adding Berkshelf dependency: #{graphitem.name} (#{version})")
-                  berks.add_dependency(graphitem.name, version)
-                end
-              end
-              # update the lockfile
-              berks.update
-              berks.lockfile.graph.update(berks.install)
-              berks.lockfile.update(berks.dependencies)
-              berks.lockfile.save
-            end
+          unless config[:environments_repo].nil?
+            config[:environments_path] = environments_path_from_git(config[:environments_repo])
           end
+          info("Loading chef environment '#{chef_environment}'...")
+          lock_berksfile(berks, cookbook_versions("#{config[:environments_path]}/#{chef_environment}.json"))
         end
         Kitchen.mutex.synchronize do
           info("Resolving cookbook dependencies with Berkshelf #{::Berkshelf::VERSION}...")
@@ -57,6 +39,54 @@ module Kitchen
             else
               berks.install(path => tmpbooks_dir)
             end
+          end
+        end
+      end
+
+      # Fetches a git repo to a temporary directory
+      #
+      # @param args [String] git repo
+      # @return [String] the environments_path directory
+      # @api private
+      def environments_path_from_git(repo)
+        info("Fetching chef environments from repo '#{repo}'...")
+        tmpenv_dir = Dir.mktmpdir('environments-')
+        Git.clone(repo, 'chef_env', path: tmpenv_dir, depth: 1)
+        "#{tmpenv_dir}/chef_env"
+      end
+
+      # Gets the cookbook version restrictions from a chef environment
+      #
+      # @param [String] chef environment path
+      # @return [Hash] cookbook versions
+      # @api private
+      def cookbook_versions(json_path)
+        info("Using environment from '#{json_path}'")
+        JSON.parse(File.read("#{json_path}"))['cookbook_versions']
+      end
+
+      # Locks the cookbook versions into Berksfile.lock
+      #
+      # @param [Berksfile] berksfile to lock
+      # @param [Hash] cookbook versions
+      # @api private
+      def lock_berksfile(berksfile, cookbook_versions)
+        ::Berkshelf.ui.mute do
+          info("Resolving dependency graph with Berkshelf #{::Berkshelf::VERSION}...")
+          berksfile.install
+          unless cookbook_versions.nil?
+            berksfile.lockfile.graph.each do |graphitem|
+              version = cookbook_versions[graphitem.name]
+              unless version.nil? || berksfile.has_dependency?(graphitem.name)
+                info("Adding Berkshelf dependency: #{graphitem.name} (#{version})")
+                berksfile.add_dependency(graphitem.name, version)
+              end
+            end
+            # update the lockfile
+            berksfile.update
+            berksfile.lockfile.graph.update(berksfile.install)
+            berksfile.lockfile.update(berksfile.dependencies)
+            berksfile.lockfile.save
           end
         end
       end

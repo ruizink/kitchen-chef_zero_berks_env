@@ -20,12 +20,28 @@ Hopefuly this provider will do the trick!
 Simply replace the provider from `chef_zero` to `chef_zero_berks_env`.
 The provider will look for the `environments_path` and `environment` configs from the provider.
 
+You can specify the `environments_repo` config, that overrides the `environments_path`. That allows you to fetch the chef environments
+from a remote repository.
+
 ## Example
 
 ```yaml
 provisioner:
   name: chef_zero_berks_env
   environments_path: 'environments'
+
+suites:
+  - name: default
+    provisioner:
+      client_rb:
+        environment: 'my_chef_environment'
+```
+or
+
+```yaml
+provisioner:
+  name: chef_zero_berks_env
+  environments_repo: 'git@github.com:ruizink/my_awesome_chef_environments.git'
 
 suites:
   - name: default
