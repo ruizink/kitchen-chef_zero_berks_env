@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/kitchen-chef_zero_berks_env.svg)](http://badge.fury.io/rb/kitchen-chef_zero_berks_env)
 [![Gem Downloads](http://ruby-gem-downloads-badge.herokuapp.com/kitchen-chef_zero_berks_env?type=total&color=brightgreen)](https://rubygems.org/gems/kitchen-chef_zero_berks_env)
-[![Build Status](https://travis-ci.org/ruizink/kitchen-chef_zero_berks_env.png)](https://travis-ci.org/ruizink/kitchen-chef_zero_berks_env)
+[![Build Status](https://travis-ci.org/ruizink/kitchen-chef_zero_berks_env.svg?branch=master)](https://travis-ci.org/ruizink/kitchen-chef_zero_berks_env)
 
 Chef Zero provider for Test Kitchen that enables Berkshelf to vendor the cookbook versions specified by a given chef environment.
 
