@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.description = <<-EOF
   Plugin for test-kitchen that extends the chef_zero provisioner allowing
   berkshelf to use cookbook restrictions loaded from chef environment files.
-  This way, Berkshelf will allways vendor the cookbook versions specified
+  This way, Berkshelf will always vendor the cookbook versions specified
   in the chef environment.
   EOF
 
