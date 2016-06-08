@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    kitchen-chef_zero_berks_env (1.1.1)
+    kitchen-chef_zero_berks_env (1.1.2)
       git (~> 1.2)
       test-kitchen (~> 1.3)
 

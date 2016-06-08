@@ -1,5 +1,10 @@
 # kitchen-chef_zero_berks_env
 
+## v1.1.2 (2016-06-08)
+
+Dropped support for Ruby 1.9.x.
+Small fixes.
+
 ## v1.1.1 (2015-09-21)
 
 Bugfixes.

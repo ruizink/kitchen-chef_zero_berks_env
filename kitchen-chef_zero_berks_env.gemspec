@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'kitchen-chef_zero_berks_env'
-  s.version     = '1.1.1'
+  s.version     = '1.1.2'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Mário Santos']
   s.email       = ['mario.rf.santos@gmail.com']
