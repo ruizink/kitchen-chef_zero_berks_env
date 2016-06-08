@@ -52,7 +52,7 @@ module Kitchen
       def environments_path_from_git(repo)
         info("Fetching chef environments from repo '#{repo}'...")
         tmpenv_dir = Dir.mktmpdir('environments-')
-        Git.clone(repo, 'chef_env', path: tmpenv_dir, depth: 1)
+        Git.clone(repo, 'chef_env', :path => tmpenv_dir, :depth => 1)
         "#{tmpenv_dir}/chef_env"
       end
 
@@ -63,7 +63,7 @@ module Kitchen
       # @api private
       def cookbook_versions(json_path)
         info("Using environment from '#{json_path}'")
-        JSON.parse(File.read("#{json_path}"))['cookbook_versions']
+        JSON.parse(File.read(json_path.to_s))['cookbook_versions']
       end
 
       # Locks the cookbook versions into Berksfile.lock

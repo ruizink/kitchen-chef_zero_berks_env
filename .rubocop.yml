@@ -1,25 +1,21 @@
 AllCops:
   Exclude:
-    - vendor/**
-    - bundle/**/*
+    - 'vendor/**/*'
+    - 'bundle/**/*'
 
 Documentation:
   Enabled: false
 AlignParameters:
-  Enabled: true
-Encoding:
-  Enabled: true
-HashSyntax:
-  Enabled: true
-LineLength:
   Enabled: false
+Encoding:
+  Enabled: false
+HashSyntax:
+  EnforcedStyle: hash_rockets
 MethodLength:
   Enabled: false
-ClassLength:
+LineLength:
+  Max: 200
+Style/FileName:
   Enabled: false
-NumericLiterals:
-  MinDigits: 10
-AbcSize:
-  Enabled: false
-MultilineOperationIndentation:
+Metrics/AbcSize:
   Enabled: false
