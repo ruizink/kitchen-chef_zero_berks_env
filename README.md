@@ -15,6 +15,21 @@ Well, if you don't pin the cookbook version dependencies within the cookbooks, B
 That might conflict with cookbook restrictions that you have defined within the chef environment, and the converge will fail.
 Hopefuly this provider will do the trick!
 
+## Installation
+
+In order to install this provider, run the following alternative commands:
+
+1. If you use the test-kitchen bundled with ChefDK (I strongly recommend you to do it):
+```
+chef gem install kitchen-chef_zero_berks_env
+```
+Click [here](https://downloads.chef.io/chef-dk/) to know more about ChefDK
+
+2. Otherwise simply run:
+```
+gem install kitchen-chef_zero_berks_env
+```
+
 ## Usage
 
 Simply replace the provider from `chef_zero` to `chef_zero_berks_env`.
