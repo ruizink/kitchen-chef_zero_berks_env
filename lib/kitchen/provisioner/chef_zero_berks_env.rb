@@ -17,7 +17,7 @@ module Kitchen
         SandboxBerksEnv.new(config, sandbox_path, instance).populate
         prepare_chef_client_zero_rb
         prepare_validation_pem
-        prepare_client_rb
+        prepare_config_rb
       end
     end
   end
