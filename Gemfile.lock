@@ -63,7 +63,7 @@ GEM
     hashie (3.4.4)
     hitimes (1.2.4)
     httpclient (2.6.0.1)
-    json (1.8.3)
+    json (2.6.3)
     method_source (0.8.2)
     minitar (0.5.4)
     mixlib-authentication (1.4.1)
